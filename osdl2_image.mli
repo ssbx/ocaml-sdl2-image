@@ -19,9 +19,9 @@
   API Doc}
 *)
 
-module SdlImage : sig
+module Image : sig
 
-  open Osdl2.Sdl
+  open Osdl2
 
   type init_flags = [
     | `JPG

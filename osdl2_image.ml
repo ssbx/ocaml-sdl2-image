@@ -12,9 +12,9 @@
 
 
 
-module SdlImage = struct
+module Image = struct
 
-  open Osdl2.Sdl
+  open Osdl2
   type init_flags = [
     | `JPG
     | `PNG
