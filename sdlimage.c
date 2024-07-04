@@ -15,9 +15,10 @@
 #include <caml/fail.h>
 
 #include <SDL_image.h>
-#include "sdlrwops.h"
-#include "sdltexture.h"
-#include "sdlsurface.h"
+#include "rwops_stub.h"
+#include "texture_stub.h"
+#include "surface_stub.h"
+#include "render_stub.h"
 
 static inline IMG_InitFlags
 IMG_InitFlag_ml2c(value v)
@@ -157,6 +158,20 @@ caml_SDL_IMG_SavePNG(value surf, value filename)
     if (r) caml_failwith("Sdlimage.save_png");
 
     return Val_unit;
+}
+
+
+CAMLprim value
+caml_SDL_IMG_LoadTexture(value renderer, value filename)
+{
+    SDL_Texture *texture =
+        IMG_LoadTexture(
+            SDL_Renderer_val(renderer),
+            String_val(filename));
+
+    if (!texture) caml_failwith("Sdlimage.load_texture");
+
+    return Val_SDL_Texture(texture);
 }
 
 /* vim: set ts=4 sw=4 et: */

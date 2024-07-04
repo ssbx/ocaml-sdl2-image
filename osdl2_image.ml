@@ -64,6 +64,7 @@ module SdlImage = struct
   external load_xpm_rw : RWops.t -> Surface.t = "caml_SDL_IMG_LoadXPM_RW"
   external load_xv_rw : RWops.t -> Surface.t = "caml_SDL_IMG_LoadXV_RW"
   external load_webp_rw : RWops.t -> Surface.t = "caml_SDL_IMG_LoadWEBP_RW"
+  external load_texture : Render.t -> filename:string -> Texture.t = "caml_SDL_IMG_LoadTexture"
 
   external save_png : Surface.t -> filename:string -> unit
           = "caml_SDL_IMG_SavePNG"

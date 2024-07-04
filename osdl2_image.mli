@@ -145,10 +145,11 @@ module SdlImage : sig
 
   external load_webp_rw : RWops.t -> Surface.t = "caml_SDL_IMG_LoadWEBP_RW"
 
+  (**{{:https://wiki.libsdl.org/SDL2_image/IMG_LoadTexture}api doc} *)
+  external load_texture : Render.t -> filename:string -> Texture.t = "caml_SDL_IMG_LoadTexture"
 
   (** {4 Saving} *)
 
-  external save_png : Surface.t -> filename:string -> unit
-    = "caml_SDL_IMG_SavePNG"
+  external save_png : Surface.t -> filename:string -> unit = "caml_SDL_IMG_SavePNG"
 
 end
