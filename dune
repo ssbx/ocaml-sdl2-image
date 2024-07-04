@@ -18,7 +18,7 @@
  (modes native)
  (foreign_stubs
   (language c)
-  (names sdlimage)
+  (names image_stub)
   (flags :standard (:include c_flags.sexp)))
  (c_library_flags (:include c_library.sexp)))
 
