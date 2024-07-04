@@ -1,0 +1,13 @@
+Sebastien Serre 2024
+
+Florent Monnier <monnier.florent at gmail dot com>
+# original ocamlsdl2-image:
+
+Florent Monnier <monnier.florent at gmail dot com>
+  Main author and current maintainer
+
+Piotr Mardziel <@piotrm0>
+  Added ocamlfind installation and instructions
+
+David Cadé <codename68 at gmail dot com>
+  Better Makefile compatibility
