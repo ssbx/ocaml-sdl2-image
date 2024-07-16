@@ -18,7 +18,7 @@
    caml_icon.tga
    caml_icon.tif
    caml_icon.xcf)
- (libraries osdl2-image unix)
+ (libraries caml-libsdl2-image unix)
  (action
    (progn
      (run %{test} caml_icon.bmp)

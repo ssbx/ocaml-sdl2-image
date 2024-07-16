@@ -12,13 +12,13 @@
     (system "echo -n '('; pkg-config --libs SDL2_image; echo -n ')'"))))
 
 (library
- (name osdl2_image)
- (public_name osdl2-image)
- (libraries osdl2)
+ (name sdl_image)
+ (public_name caml-libsdl2-image)
+ (libraries caml-libsdl2)
  (modes native)
  (foreign_stubs
   (language c)
-  (names image_stub)
+  (names sdl_image_stub)
   (flags :standard (:include c_flags.sexp)))
  (c_library_flags (:include c_library.sexp)))
 

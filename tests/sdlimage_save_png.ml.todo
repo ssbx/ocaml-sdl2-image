@@ -4,25 +4,24 @@ open Osdl2_image
 let () =
   let width = 320
   and height = 240 in
-  Sdl.init [`VIDEO];
-  SdlImage.init [`PNG];
+  Sdl.init [ `VIDEO ];
+  SdlImage.init [ `PNG ];
   let surf = Sdl.Surface.create_rgb ~width ~height ~depth:8 in
   Random.self_init ();
   let img = Sdl.Surface.load_bmp ~filename:"caml_icon.bmp" in
   let w, h = Sdl.Surface.get_dims img in
-  let rect = Sdl.Rect.make4 ~x:0 ~y:0 ~w:w ~h:h in
+  let rect = Sdl.Rect.make4 ~x:0 ~y:0 ~w ~h in
   let rec loop rect i =
-    if i > 0 then begin
+    if i > 0
+    then (
       let x = Random.int (width - w)
       and y = Random.int (height - h) in
       let rect = Sdl.Rect.move rect ~x ~y in
       Sdl.Surface.blit_surfs ~src:surf ~dst:img ~dst_rect:rect;
-      loop rect (i-1)
-    end
+      loop rect (i - 1))
   in
   loop rect 10;
   SdlImage.save_png surf ~filename:"saved-surf.png";
   SdlImage.quit ();
-  Sdl.quit ();
+  Sdl.quit ()
 ;;
-

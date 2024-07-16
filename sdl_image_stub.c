@@ -16,7 +16,6 @@
 
 #include <SDL_image.h>
 #include "rwops_stub.h"
-#include "texture_stub.h"
 #include "surface_stub.h"
 #include "render_stub.h"
 

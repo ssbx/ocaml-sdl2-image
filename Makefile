@@ -1,4 +1,4 @@
-.PHONY: build test t clean
+.PHONY: build test t clean dev_install fmt
 
 
 build:
@@ -7,9 +7,15 @@ build:
 clean:
 	dune clean
 
-t: test
 test:
 	dune runtest -f
 
-def_install:
-	opan install --working-dir ./osdl2-image.opam
+fmt:
+	dune build @fmt
+	@echo 'run "dune promote" to update files'
+
+doc:
+	dune build @doc && $(BROWSER) _build/default/_doc/_html/caml-libsdl2-image/Sdl_image/index.html
+
+dev_install:
+	opan install --working-dir ./caml-libsdl2-image.opam

@@ -7,13 +7,13 @@ maintainer: ["Seb"]
 authors: ["Seb"]
 license: "BSD Zero Clause License"
 tags: ["topics" "bindings" "graphics" "image" "loader"]
-homepage: "https://github.com/ssbx/osdl2-image"
-doc: "https://github.com/ssbx/osdl2-image"
-bug-reports: "https://github.com/ssbx/osdl2-image/issues"
+homepage: "https://github.com/ssbx/caml-libsdl2-image"
+doc: "https://github.com/ssbx/caml-libsdl2-image"
+bug-reports: "https://github.com/ssbx/caml-libsdl2-image/issues"
 depends: [
   "ocaml"
   "dune" {>= "3.15"}
-  "osdl2"
+  "caml-libsdl2"
   "conf-sdl2-image"
   "unix"
   "odoc" {with-doc}
@@ -32,4 +32,4 @@ build: [
     "@doc" {with-doc}
   ]
 ]
-dev-repo: "git+https://github.com/ssbx/osdl2-image.git"
+dev-repo: "git+https://github.com/ssbx/caml-libsdl2-image.git"
