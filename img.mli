@@ -16,6 +16,8 @@
 
     {{:http://www.libsdl.org/projects/SDL_image/docs/SDL_image.html} API Doc} *)
 
+open CamlSDL2
+
 type init_flags =
   [ `JPG
   | `PNG

@@ -12,9 +12,9 @@
     (system "echo -n '('; pkg-config --libs SDL2_image; echo -n ')'"))))
 
 (library
- (name img)
- (public_name caml-libsdl2-image)
- (libraries caml-libsdl2)
+ (public_name caml-sdl2-image)
+ (name camlSDL2_Image)
+ (libraries caml-sdl2)
  (modes native)
  (foreign_stubs
   (language c)

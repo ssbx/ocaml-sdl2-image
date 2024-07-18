@@ -1,12 +1,12 @@
 (lang dune 3.15)
 
-(name caml-libsdl2-image)
+(name caml-sdl2-image)
 (version 1.0)
 
 (generate_opam_files true)
 
 (source
- (github ssbx/caml-libsdl2-image))
+ (github ssbx/caml-sdl2-image))
 
 (authors "Seb")
 
@@ -14,17 +14,17 @@
 
 (license "BSD Zero Clause License")
 
-(documentation https://github.com/ssbx/caml-libsdl2-image)
+(documentation https://github.com/ssbx/caml-sdl2-image)
 
 (use_standard_c_and_cxx_flags true)
 
 (formatting (enabled_for ocaml))
 
 (package
- (name caml-libsdl2-image)
+ (name caml-sdl2-image)
  (synopsis "Bindings to the SDL2 image library")
  (description "Bindings to the SDL2 image library")
- (depends ocaml dune caml-libsdl2 conf-sdl2-image)
+ (depends ocaml dune caml-sdl2 conf-sdl2-image)
  (tags
   (topics bindings graphics image loader)))
 

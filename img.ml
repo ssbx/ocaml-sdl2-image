@@ -10,6 +10,8 @@
 *)
 (* Image loading library *)
 
+open CamlSDL2
+
 type init_flags =
   [ `JPG
   | `PNG

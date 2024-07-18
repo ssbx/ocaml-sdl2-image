@@ -1,3 +1,6 @@
+open CamlSDL2
+open CamlSDL2_Image
+
 let is_imgs =
   [ "ico", Img.is_ico
   ; "cur", Img.is_cur

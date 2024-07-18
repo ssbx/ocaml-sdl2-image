@@ -16,9 +16,10 @@
 #include <caml/fail.h>
 
 #include <SDL_image.h>
-#include "rwops_stub.h"
-#include "surface_stub.h"
-#include "render_stub.h"
+
+#include "camlsdl2/rwops_stub.h"
+#include "camlsdl2/surface_stub.h"
+#include "camlsdl2/render_stub.h"
 
 static inline IMG_InitFlags
 IMG_InitFlag_ml2c(value v)
