@@ -13,7 +13,7 @@
 
 (library
  (public_name caml-sdl2-image)
- (name camlSDL2_Image)
+ (name camlSDL2_image)
  (libraries caml-sdl2)
  (modes native)
  (foreign_stubs

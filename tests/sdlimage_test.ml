@@ -1,5 +1,5 @@
 open CamlSDL2
-open CamlSDL2_Image
+open CamlSDL2_image
 
 let is_imgs =
   [ "ico", Img.is_ico
