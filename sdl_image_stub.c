@@ -45,37 +45,81 @@ IMG_InitFlags_val(value flag_list)
 CAMLprim value
 caml_SDL_IMG_Init(value flags)
 {
+    CAMLparam1(flags);
     IMG_InitFlags c_flags = IMG_InitFlags_val(flags);
     int si = IMG_Init(c_flags);
     if (si == 0) caml_failwith("Sdlimage.init");
     //if (si != c_flags) caml_failwith("Sdlimage.init: "
     //    "uncomplete initialisation");
-    return Val_unit;
+    CAMLreturn(Val_unit);
 }
 
 CAMLprim value
 caml_SDL_IMG_Quit(value unit)
 {
+    CAMLparam1(unit);
     IMG_Quit();
-    return Val_unit;
+    CAMLreturn(Val_unit);
 }
 
 /* Functions to detect a file type, given a seekable source */
 
-CAMLprim value caml_SDL_IMG_isICO(value img) { return Val_bool(IMG_isICO(SDL_RWops_val(img))); }
-CAMLprim value caml_SDL_IMG_isCUR(value img) { return Val_bool(IMG_isCUR(SDL_RWops_val(img))); }
-CAMLprim value caml_SDL_IMG_isBMP(value img) { return Val_bool(IMG_isBMP(SDL_RWops_val(img))); }
-CAMLprim value caml_SDL_IMG_isGIF(value img) { return Val_bool(IMG_isGIF(SDL_RWops_val(img))); }
-CAMLprim value caml_SDL_IMG_isJPG(value img) { return Val_bool(IMG_isJPG(SDL_RWops_val(img))); }
-CAMLprim value caml_SDL_IMG_isLBM(value img) { return Val_bool(IMG_isLBM(SDL_RWops_val(img))); }
-CAMLprim value caml_SDL_IMG_isPCX(value img) { return Val_bool(IMG_isPCX(SDL_RWops_val(img))); }
-CAMLprim value caml_SDL_IMG_isPNG(value img) { return Val_bool(IMG_isPNG(SDL_RWops_val(img))); }
-CAMLprim value caml_SDL_IMG_isPNM(value img) { return Val_bool(IMG_isPNM(SDL_RWops_val(img))); }
-CAMLprim value caml_SDL_IMG_isTIF(value img) { return Val_bool(IMG_isTIF(SDL_RWops_val(img))); }
-CAMLprim value caml_SDL_IMG_isXCF(value img) { return Val_bool(IMG_isXCF(SDL_RWops_val(img))); }
-CAMLprim value caml_SDL_IMG_isXPM(value img) { return Val_bool(IMG_isXPM(SDL_RWops_val(img))); }
-CAMLprim value caml_SDL_IMG_isXV (value img) { return Val_bool(IMG_isXV (SDL_RWops_val(img))); }
-CAMLprim value caml_SDL_IMG_isWEBP(value img) { return Val_bool(IMG_isWEBP(SDL_RWops_val(img))); }
+CAMLprim value caml_SDL_IMG_isICO(value img) {
+    CAMLparam1(img);
+    CAMLreturn(Val_bool(IMG_isICO(SDL_RWops_val(img))));
+}
+CAMLprim value caml_SDL_IMG_isCUR(value img) {
+    CAMLparam1(img);
+    CAMLreturn(Val_bool(IMG_isCUR(SDL_RWops_val(img))));
+}
+CAMLprim value caml_SDL_IMG_isBMP(value img) {
+    CAMLparam1(img);
+    CAMLreturn(Val_bool(IMG_isBMP(SDL_RWops_val(img))));
+}
+CAMLprim value caml_SDL_IMG_isGIF(value img) {
+    CAMLparam1(img);
+    CAMLreturn(Val_bool(IMG_isGIF(SDL_RWops_val(img))));
+}
+CAMLprim value caml_SDL_IMG_isJPG(value img) {
+    CAMLparam1(img);
+    CAMLreturn(Val_bool(IMG_isJPG(SDL_RWops_val(img))));
+}
+CAMLprim value caml_SDL_IMG_isLBM(value img) {
+    CAMLparam1(img);
+    CAMLreturn(Val_bool(IMG_isLBM(SDL_RWops_val(img))));
+}
+CAMLprim value caml_SDL_IMG_isPCX(value img) {
+    CAMLparam1(img);
+    CAMLreturn(Val_bool(IMG_isPCX(SDL_RWops_val(img))));
+}
+CAMLprim value caml_SDL_IMG_isPNG(value img) {
+    CAMLparam1(img);
+    CAMLreturn(Val_bool(IMG_isPNG(SDL_RWops_val(img))));
+}
+CAMLprim value caml_SDL_IMG_isPNM(value img) {
+    CAMLparam1(img);
+    CAMLreturn(Val_bool(IMG_isPNM(SDL_RWops_val(img))));
+}
+CAMLprim value caml_SDL_IMG_isTIF(value img) {
+    CAMLparam1(img);
+    CAMLreturn(Val_bool(IMG_isTIF(SDL_RWops_val(img))));
+}
+CAMLprim value caml_SDL_IMG_isXCF(value img) {
+    CAMLparam1(img);
+    CAMLreturn(Val_bool(IMG_isXCF(SDL_RWops_val(img))));
+}
+CAMLprim value caml_SDL_IMG_isXPM(value img) {
+    CAMLparam1(img);
+    CAMLreturn(Val_bool(IMG_isXPM(SDL_RWops_val(img))));
+}
+CAMLprim value caml_SDL_IMG_isXV (value img) {
+    CAMLparam1(img);
+    CAMLreturn(Val_bool(IMG_isXV (SDL_RWops_val(img))));
+}
+CAMLprim value caml_SDL_IMG_isWEBP(value img) {
+    CAMLparam1(img);
+    CAMLreturn(Val_bool(IMG_isWEBP(SDL_RWops_val(img))));
+}
 
 CAMLprim value
 caml_SDL_IMG_GetCompiledVersion(value unit)
@@ -112,43 +156,172 @@ caml_SDL_IMG_GetLinkedVersion(value unit)
 CAMLprim value
 caml_SDL_IMG_LoadPNG_RW(value img)
 {
-    SDL_Surface *surf =
-        IMG_LoadPNG_RW(
-            SDL_RWops_val(img));
+    CAMLparam1(img);
+    SDL_Surface *surf =IMG_LoadPNG_RW(SDL_RWops_val(img));
+    if (!surf)
+        caml_failwith("Sdlimage.load_png_rw");
 
-    if (!surf) caml_failwith("Sdlimage.load_png_rw");
-
-    return Val_SDL_Surface(surf);
+    CAMLreturn(Val_SDL_Surface(surf));
 }
 
-#define caml_SDL_IMG_LoadT_RW(T, k) \
-  CAMLprim value \
-  caml_SDL_IMG_Load##T##_RW(value img) { \
-      SDL_Surface *surf = \
-        IMG_Load##T##_RW( \
-          SDL_RWops_val(img)); \
-      if (!surf) caml_failwith("Sdlimage.load_" #k "_rw"); \
-      return Val_SDL_Surface(surf); \
-  }
+CAMLprim value
+caml_SDL_IMG_LoadICO_RW(value img)
+{
+    CAMLparam1(img);
+    SDL_Surface *surf = IMG_LoadICO_RW(SDL_RWops_val(img));
+    if (!surf)
+        caml_failwith("Sdlimage.load_ico_rw");
 
-caml_SDL_IMG_LoadT_RW(ICO, ico)
-caml_SDL_IMG_LoadT_RW(CUR, cur)
-caml_SDL_IMG_LoadT_RW(BMP, bmp)
-caml_SDL_IMG_LoadT_RW(GIF, gif)
-caml_SDL_IMG_LoadT_RW(JPG, jpg)
-caml_SDL_IMG_LoadT_RW(LBM, lbm)
-caml_SDL_IMG_LoadT_RW(PCX, pcx)
-caml_SDL_IMG_LoadT_RW(PNM, pnm)
-caml_SDL_IMG_LoadT_RW(TGA, tga)
-caml_SDL_IMG_LoadT_RW(TIF, tif)
-caml_SDL_IMG_LoadT_RW(XCF, xcf)
-caml_SDL_IMG_LoadT_RW(XPM, xpm)
-caml_SDL_IMG_LoadT_RW(XV, xv)
-caml_SDL_IMG_LoadT_RW(WEBP, webp)
+    CAMLreturn(Val_SDL_Surface(surf));
+}
+
+CAMLprim value
+caml_SDL_IMG_LoadTGA_RW(value img)
+{
+    CAMLparam1(img);
+    SDL_Surface *surf = IMG_LoadTGA_RW(SDL_RWops_val(img));
+    if (!surf)
+        caml_failwith("Sdlimage.load_tga_rw");
+
+    CAMLreturn(Val_SDL_Surface(surf));
+}
+
+CAMLprim value
+caml_SDL_IMG_LoadTIF_RW(value img)
+{
+    CAMLparam1(img);
+    SDL_Surface *surf = IMG_LoadTIF_RW(SDL_RWops_val(img));
+    if (!surf)
+        caml_failwith("Sdlimage.load_tif_rw");
+
+    CAMLreturn(Val_SDL_Surface(surf));
+}
+
+CAMLprim value
+caml_SDL_IMG_LoadXCF_RW(value img)
+{
+    CAMLparam1(img);
+    SDL_Surface *surf = IMG_LoadXCF_RW(SDL_RWops_val(img));
+    if (!surf)
+        caml_failwith("Sdlimage.load_xcf_rw");
+
+    CAMLreturn(Val_SDL_Surface(surf));
+}
+
+CAMLprim value
+caml_SDL_IMG_LoadXPM_RW(value img)
+{
+    CAMLparam1(img);
+    SDL_Surface *surf = IMG_LoadXPM_RW(SDL_RWops_val(img));
+    if (!surf)
+        caml_failwith("Sdlimage.load_xpm_rw");
+
+    CAMLreturn(Val_SDL_Surface(surf));
+}
+
+CAMLprim value
+caml_SDL_IMG_LoadXV_RW(value img)
+{
+    CAMLparam1(img);
+    SDL_Surface *surf = IMG_LoadXV_RW(SDL_RWops_val(img));
+    if (!surf)
+        caml_failwith("Sdlimage.load_xv_rw");
+
+    CAMLreturn(Val_SDL_Surface(surf));
+}
+
+CAMLprim value
+caml_SDL_IMG_LoadWEBP_RW(value img)
+{
+    CAMLparam1(img);
+    SDL_Surface *surf = IMG_LoadWEBP_RW(SDL_RWops_val(img));
+    if (!surf)
+        caml_failwith("Sdlimage.load_webp_rw");
+
+    CAMLreturn(Val_SDL_Surface(surf));
+}
+
+CAMLprim value
+caml_SDL_IMG_LoadPNM_RW(value img)
+{
+    CAMLparam1(img);
+    SDL_Surface *surf = IMG_LoadPNM_RW(SDL_RWops_val(img));
+    if (!surf)
+        caml_failwith("Sdlimage.load_pnm_rw");
+
+    CAMLreturn(Val_SDL_Surface(surf));
+}
+
+CAMLprim value
+caml_SDL_IMG_LoadPCX_RW(value img)
+{
+    CAMLparam1(img);
+    SDL_Surface *surf = IMG_LoadPCX_RW(SDL_RWops_val(img));
+    if (!surf)
+        caml_failwith("Sdlimage.load_pcx_rw");
+
+    CAMLreturn(Val_SDL_Surface(surf));
+}
+
+CAMLprim value
+caml_SDL_IMG_LoadLBM_RW(value img)
+{
+    CAMLparam1(img);
+    SDL_Surface *surf = IMG_LoadLBM_RW(SDL_RWops_val(img));
+    if (!surf)
+        caml_failwith("Sdlimage.load_lbm_rw");
+
+    CAMLreturn(Val_SDL_Surface(surf));
+}
+
+CAMLprim value
+caml_SDL_IMG_LoadJPG_RW(value img)
+{
+    CAMLparam1(img);
+    SDL_Surface *surf = IMG_LoadJPG_RW(SDL_RWops_val(img));
+    if (!surf)
+        caml_failwith("Sdlimage.load_jpg_rw");
+
+    CAMLreturn(Val_SDL_Surface(surf));
+}
+
+CAMLprim value
+caml_SDL_IMG_LoadGIF_RW(value img)
+{
+    CAMLparam1(img);
+    SDL_Surface *surf = IMG_LoadGIF_RW(SDL_RWops_val(img));
+    if (!surf)
+        caml_failwith("Sdlimage.load_gif_rw");
+
+    CAMLreturn(Val_SDL_Surface(surf));
+}
+
+CAMLprim value
+caml_SDL_IMG_LoadBMP_RW(value img)
+{
+    CAMLparam1(img);
+    SDL_Surface *surf = IMG_LoadBMP_RW(SDL_RWops_val(img));
+    if (!surf)
+        caml_failwith("Sdlimage.load_bmp_rw");
+
+    CAMLreturn(Val_SDL_Surface(surf));
+}
+
+CAMLprim value
+caml_SDL_IMG_LoadCUR_RW(value img)
+{
+    CAMLparam1(img);
+    SDL_Surface *surf = IMG_LoadCUR_RW(SDL_RWops_val(img));
+    if (!surf)
+        caml_failwith("Sdlimage.load_cur_rw");
+
+    CAMLreturn(Val_SDL_Surface(surf));
+}
 
 CAMLprim value
 caml_SDL_IMG_SavePNG(value surf, value filename)
 {
+    CAMLparam2(surf, filename);
     int r =
         IMG_SavePNG(
             SDL_Surface_val(surf),
@@ -156,13 +329,13 @@ caml_SDL_IMG_SavePNG(value surf, value filename)
 
     if (r) caml_failwith("Sdlimage.save_png");
 
-    return Val_unit;
+    CAMLreturn(Val_unit);
 }
-
 
 CAMLprim value
 caml_SDL_IMG_LoadTexture(value renderer, value filename)
 {
+    CAMLparam2(renderer, filename);
     SDL_Texture *texture =
         IMG_LoadTexture(
             SDL_Renderer_val(renderer),
@@ -170,7 +343,7 @@ caml_SDL_IMG_LoadTexture(value renderer, value filename)
 
     if (!texture) caml_failwith("Sdlimage.load_texture");
 
-    return Val_SDL_Texture(texture);
+    CAMLreturn(Val_SDL_Texture(texture));
 }
 
 /* vim: set ts=4 sw=4 et: */
