@@ -1,25 +1,25 @@
 let is_imgs =
-  [ "ico", Sdl_image.is_ico
-  ; "cur", Sdl_image.is_cur
-  ; "bmp", Sdl_image.is_bmp
-  ; "gif", Sdl_image.is_gif
-  ; "jpg", Sdl_image.is_jpg
-  ; "lbm", Sdl_image.is_lbm
-  ; "pcx", Sdl_image.is_pcx
-  ; "png", Sdl_image.is_png
-  ; "pnm", Sdl_image.is_pnm
-  ; "tif", Sdl_image.is_tif
-  ; "xcf", Sdl_image.is_xcf
-  ; "xpm", Sdl_image.is_xpm
-  ; "xv", Sdl_image.is_xv
-  ; "webp", Sdl_image.is_webp
+  [ "ico", Img.is_ico
+  ; "cur", Img.is_cur
+  ; "bmp", Img.is_bmp
+  ; "gif", Img.is_gif
+  ; "jpg", Img.is_jpg
+  ; "lbm", Img.is_lbm
+  ; "pcx", Img.is_pcx
+  ; "png", Img.is_png
+  ; "pnm", Img.is_pnm
+  ; "tif", Img.is_tif
+  ; "xcf", Img.is_xcf
+  ; "xpm", Img.is_xpm
+  ; "xv", Img.is_xv
+  ; "webp", Img.is_webp
   ]
 ;;
 
 let () =
   let filename = Sys.argv.(1) in
   print_endline filename;
-  Sdl_image.init [ `JPG; `PNG; `TIF; `WEBP ];
+  Img.init [ `JPG; `PNG; `TIF; `WEBP ];
   let rwo = Sdl.rw_from_file ~filename ~mode:"rb" in
   let found = ref false in
   List.iter
@@ -30,5 +30,5 @@ let () =
         found := true))
     is_imgs;
   if not !found then Printf.printf "unknown filetype for \"%s\"\n" filename;
-  Sdl_image.quit ()
+  Img.quit ()
 ;;
