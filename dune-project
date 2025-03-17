@@ -24,7 +24,7 @@
  (name caml-sdl2-image)
  (synopsis "Bindings to the SDL2 image library")
  (description "Bindings to the SDL2 image library")
- (depends ocaml dune caml-sdl2 conf-sdl2-image)
+ (depends ocaml dune caml-sdl2)
  (tags
   (topics bindings graphics image loader)))
 
