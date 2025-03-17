@@ -1,4 +1,4 @@
-.PHONY: build test doc clean fmt dev_update
+.PHONY: build test doc clean fmt install
 
 
 build:
@@ -17,5 +17,5 @@ fmt:
 doc:
 	dune build @doc && $(BROWSER) _build/default/_doc/_html/caml-sdl2-image/CamlSDL2_Image/Img/index.html
 
-dev_update:
+install:
 	opam install --working-dir ./caml-sdl2-image.opam
