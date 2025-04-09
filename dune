@@ -1,15 +1,16 @@
-
 (rule
  (targets c_flags.sexp)
-  (action
- (with-stdout-to c_flags.sexp
-    (system "echo -n '('; pkg-config --cflags SDL2_image; echo -n ')'"))))
+ (action
+  (with-stdout-to
+   c_flags.sexp
+   (system "echo -n '('; pkg-config --cflags SDL2_image; echo -n ')'"))))
 
 (rule
  (targets c_library.sexp)
-  (action
- (with-stdout-to c_library.sexp
-    (system "echo -n '('; pkg-config --libs SDL2_image; echo -n ')'"))))
+ (action
+  (with-stdout-to
+   c_library.sexp
+   (system "echo -n '('; pkg-config --libs SDL2_image; echo -n ')'"))))
 
 (library
  (public_name caml-sdl2-image)
@@ -19,6 +20,8 @@
  (foreign_stubs
   (language c)
   (names img_stub)
-  (flags :standard (:include c_flags.sexp)))
- (c_library_flags (:include c_library.sexp)))
-
+  (flags
+   :standard
+   (:include c_flags.sexp)))
+ (c_library_flags
+  (:include c_library.sexp)))

@@ -1,33 +1,32 @@
 ;(tests
- ;(names
-   ;sdlimage_save_png
-   ;sdlimage_test_surf)
- ;(modules sdlimage_test_surf sdlimage_save_png)
- ;(libraries osdl2-image))
+;(names
+;sdlimage_save_png
+;sdlimage_test_surf)
+;(modules sdlimage_test_surf sdlimage_save_png)
+;(libraries osdl2-image))
 
 (test
  (name sdlimage_test)
  (modules sdlimage_test)
  (deps
-   caml_icon.bmp
-   caml_icon.gif
-   caml_icon.ico
-   caml_icon.jpg
-   caml_icon.png
-   caml_icon.ppm
-   caml_icon.tga
-   caml_icon.tif
-   caml_icon.xcf)
+  caml_icon.bmp
+  caml_icon.gif
+  caml_icon.ico
+  caml_icon.jpg
+  caml_icon.png
+  caml_icon.ppm
+  caml_icon.tga
+  caml_icon.tif
+  caml_icon.xcf)
  (libraries caml-sdl2-image unix)
  (action
-   (progn
-     (run %{test} caml_icon.bmp)
-     (run %{test} caml_icon.gif)
-     (run %{test} caml_icon.ico)
-     (run %{test} caml_icon.jpg)
-     (run %{test} caml_icon.png)
-     (run %{test} caml_icon.ppm)
-     (run %{test} caml_icon.tga)
-     (run %{test} caml_icon.tif)
-     (run %{test} caml_icon.xcf))))
-
+  (progn
+   (run %{test} caml_icon.bmp)
+   (run %{test} caml_icon.gif)
+   (run %{test} caml_icon.ico)
+   (run %{test} caml_icon.jpg)
+   (run %{test} caml_icon.png)
+   (run %{test} caml_icon.ppm)
+   (run %{test} caml_icon.tga)
+   (run %{test} caml_icon.tif)
+   (run %{test} caml_icon.xcf))))
